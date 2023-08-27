@@ -4,7 +4,6 @@ export const IntroductionContainer = styled.section`
   display: flex;
   flex-direction: row;
   gap: 3.5rem;
-  height: 34rem;
   padding: 6rem 0;
 `
 
@@ -16,6 +15,10 @@ export const IntroductionDescription = styled.div`
     line-height: 1.3;
   }
 
+  p.sub-title {
+    font-size: 1.25rem;
+  }
+
   display: flex;
   flex-direction: column;
   gap: 4.125rem;
@@ -25,11 +28,21 @@ export const IntroductionDescription = styled.div`
 export const IntroductionBenefits = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1.25rem 2.5rem;
+
+  p {
+    font-size: 0.875rem;
+  }
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
 `
 
 export const IntroductionImageBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
 `
