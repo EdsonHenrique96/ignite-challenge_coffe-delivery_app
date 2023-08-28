@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
 interface BulletIconContainerProps {
-  colorBackground: string
+  colorbackground: string
 }
 
 export const BulletIconContainer = styled.div<BulletIconContainerProps>`
   background-color: ${(props) =>
-    props.colorBackground ?? props.theme['yellow-dark']};
+    props.colorbackground ?? props.theme['yellow-dark']};
   padding: 0.5rem;
   width: 2rem;
   height: 2rem;

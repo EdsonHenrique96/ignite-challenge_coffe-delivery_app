@@ -17,7 +17,7 @@ const iconsDict: { [key in BulletIconTypes]: React.ReactNode } = {
 
 export function BulletIcon({ color, type }: BulletIconsProps) {
   return (
-    <BulletIconContainer colorBackground={color}>
+    <BulletIconContainer colorbackground={color}>
       {iconsDict[type]}
     </BulletIconContainer>
   )
