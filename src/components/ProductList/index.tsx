@@ -28,13 +28,15 @@ export function ProductList({ title }: ProductListProps) {
           const formattedPrice = FormartCurrency(product.price)
 
           return (
-            <ProductCard>
+            <ProductCard key={`product-card-${product.id}`}>
               <header>
                 <img src={product.image} alt={`imagem de ${product.name}`} />
 
                 <LabelsContainer>
                   {product.labels.map((label) => (
-                    <Label>{label.toUpperCase()}</Label>
+                    <Label key={`label-${label}-${product.id}`}>
+                      {label.toUpperCase()}
+                    </Label>
                   ))}
                 </LabelsContainer>
               </header>
