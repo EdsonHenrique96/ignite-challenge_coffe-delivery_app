@@ -3,13 +3,15 @@ import Logo from '../../assets/logo.png'
 import { Cart } from '../Cart'
 import { HeaderContainer, HeaderContent, LocaleContainer } from './styles'
 
+import { Link } from 'react-router-dom'
+
 export function Header() {
   return (
     <HeaderContainer>
       <HeaderContent>
-        <div>
+        <Link to="/">
           <img src={Logo} alt="logo coffee delivery" />
-        </div>
+        </Link>
 
         <nav>
           <LocaleContainer>
@@ -17,7 +19,9 @@ export function Header() {
             <p>Poços de Caldas, MG</p>
           </LocaleContainer>
 
-          <Cart />
+          <Link to="/checkout">
+            <Cart />
+          </Link>
         </nav>
       </HeaderContent>
     </HeaderContainer>
