@@ -179,14 +179,6 @@ export const PurchaseSummary = styled.div`
   gap: 0.75rem;
 `
 
-export const CheckoutContainer = styled.main`
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1120px;
-  display: flex;
-  flex-direction: column;
-`
-
 export const CartItemButtonsCotnainer = styled.div`
   display: flex;
   gap: 0.5rem;
