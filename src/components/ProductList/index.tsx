@@ -1,19 +1,19 @@
 import { productsData } from '../../api/products'
 import { FormartCurrency } from '../../helpers'
+import { IncrementButton } from '../IncrementButton'
 import {
   AddToCartButton,
   CardContent,
   CardFooter,
   CoffeListContainer,
   CoffeListContent,
-  IncrementButton,
   Label,
   LabelsContainer,
   PriceAmount,
   ProductCard,
 } from './styles'
 
-import { ShoppingCart, Minus, Plus } from '@phosphor-icons/react'
+import { ShoppingCart } from '@phosphor-icons/react'
 
 interface ProductListProps {
   title: string
@@ -52,15 +52,7 @@ export function ProductList({ title }: ProductListProps) {
                   <PriceAmount>{formattedPrice.slice(2)}</PriceAmount>
                 </div>
 
-                <IncrementButton>
-                  <button type="button">
-                    <Minus size={14} weight="bold" />
-                  </button>
-                  <span>1</span>
-                  <button type="button">
-                    <Plus size={14} weight="bold" />
-                  </button>
-                </IncrementButton>
+                <IncrementButton />
 
                 <AddToCartButton type="button">
                   <ShoppingCart weight="fill" size={22} />
