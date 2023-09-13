@@ -3,12 +3,15 @@ import { GlobalStyles } from './styles/global'
 import { DefaultTheme } from './styles/themes/defaultTheme'
 
 import { Router } from './Router'
+import { CartContextProvider } from './contexts/CartContext'
 
 function App() {
   return (
     <ThemeProvider theme={DefaultTheme}>
       <GlobalStyles />
-      <Router />
+      <CartContextProvider>
+        <Router />
+      </CartContextProvider>
     </ThemeProvider>
   )
 }

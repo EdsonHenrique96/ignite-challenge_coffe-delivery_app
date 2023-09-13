@@ -6,8 +6,6 @@ import {
   Money,
   Trash,
 } from '@phosphor-icons/react'
-import ExpressoTradicionaImg from '../../assets/expresso.png'
-import CaffeLatteImg from '../../assets/latte.png'
 
 import {
   AddressCard,
@@ -28,8 +26,16 @@ import {
 } from './styles'
 import { TitleWithIcon } from './components/TitleWithIcon'
 import { IncrementButton } from '../../components/IncrementButton'
+import { useContext } from 'react'
+import { CartContext } from '../../contexts/CartContext'
+import { FormartCurrency } from '../../helpers'
 
 export function Checkout() {
+  const { itemsOnCart, removeItemFromCart, updateUnitsItem } =
+    useContext(CartContext)
+
+  const shippingPrice = itemsOnCart.length > 0 ? 3.5 : 0
+
   return (
     <>
       <CheckoutForm action="">
@@ -123,59 +129,67 @@ export function Checkout() {
             </PaymentMethodButtonContainer>
           </PaymentMethodCard>
         </CheckoutSection>
+
         <CheckoutSection>
           <h2>Cafés selecionados</h2>
           <ResumeCheckoutCard>
-            <CartItem>
-              <img src={ExpressoTradicionaImg} alt="imagem item" />
+            {itemsOnCart.map(({ product, units }) => (
+              <CartItem>
+                <img src={product.image} alt="imagem item" />
 
-              <div>
-                <p>Expresso Tradiconal</p>
-                <CartItemButtonsCotnainer>
-                  <IncrementButton />
-                  <RemoveItemButton type="button">
-                    <Trash size={16} />
-                    <span>Remover</span>
-                  </RemoveItemButton>
-                </CartItemButtonsCotnainer>
-              </div>
+                <div>
+                  <p>{product.name}</p>
+                  <CartItemButtonsCotnainer>
+                    <IncrementButton
+                      value={units}
+                      updateValue={(newValue: number) => {
+                        updateUnitsItem(product.id, newValue)
+                      }}
+                    />
+                    <RemoveItemButton
+                      type="button"
+                      onClick={() => removeItemFromCart(product.id)}
+                    >
+                      <Trash size={16} />
+                      <span>Remover</span>
+                    </RemoveItemButton>
+                  </CartItemButtonsCotnainer>
+                </div>
 
-              <div>
-                <span>R$ 9,90</span>
-              </div>
-            </CartItem>
-            <CartItem>
-              <img src={CaffeLatteImg} alt="imagem item" />
+                <div>
+                  <span>{FormartCurrency(product.price)}</span>
+                </div>
+              </CartItem>
+            ))}
 
-              <div>
-                <p>Expresso Tradiconal</p>
-                <CartItemButtonsCotnainer>
-                  <IncrementButton />
-                  <RemoveItemButton type="button">
-                    <Trash size={16} />
-                    <span>Remover</span>
-                  </RemoveItemButton>
-                </CartItemButtonsCotnainer>
-              </div>
-
-              <div>
-                <span>R$ 9,90</span>
-              </div>
-            </CartItem>
             <PurchaseSummary>
               <PurchaseSummaryLine>
                 <span>Total de items</span>
-                <span>R$ 29,70</span>
+                <span>
+                  {FormartCurrency(
+                    itemsOnCart.reduce((price, itemOnCart) => {
+                      return (price +=
+                        itemOnCart.product.price * itemOnCart.units)
+                    }, 0),
+                  )}
+                </span>
               </PurchaseSummaryLine>
 
               <PurchaseSummaryLine>
                 <span>Entrega</span>
-                <span>R$ 3,50</span>
+                <span>{FormartCurrency(shippingPrice)}</span>
               </PurchaseSummaryLine>
 
               <PurchaseSummaryLine className="purchase-total">
                 <span>Total</span>
-                <span>R$ 33,20</span>
+                <span>
+                  {FormartCurrency(
+                    itemsOnCart.reduce((price, itemOnCart) => {
+                      return (price +=
+                        itemOnCart.product.price * itemOnCart.units)
+                    }, 0) + shippingPrice,
+                  )}
+                </span>
               </PurchaseSummaryLine>
             </PurchaseSummary>
 
