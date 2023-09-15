@@ -1,11 +1,11 @@
 import { ShoppingCart } from '@phosphor-icons/react'
 import { CartButton } from './styled'
 import { DefaultTheme } from '../../styles/themes/defaultTheme'
-import { useContext, useMemo } from 'react'
-import { CartContext } from '../../contexts/CartContext'
+import { useMemo } from 'react'
+import { useCart } from '../../hooks/useCart'
 
 export function Cart() {
-  const { itemsOnCart } = useContext(CartContext)
+  const { itemsOnCart } = useCart()
 
   const countItemOnCart = useMemo(
     () =>

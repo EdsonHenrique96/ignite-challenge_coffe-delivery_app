@@ -1,15 +1,14 @@
-import { useContext } from 'react'
 import { productsData } from '../../api/products'
 import { ProductCard } from '../ProductCard'
 import { CoffeListContainer, CoffeListContent } from './styles'
-import { CartContext } from '../../contexts/CartContext'
+import { useCart } from '../../hooks/useCart'
 
 interface ProductListProps {
   title: string
 }
 
 export function ProductList({ title }: ProductListProps) {
-  const { addItemOnCart } = useContext(CartContext)
+  const { addItemOnCart } = useCart()
 
   return (
     <CoffeListContainer>

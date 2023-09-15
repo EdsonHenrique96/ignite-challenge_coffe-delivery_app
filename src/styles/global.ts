@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
 
   :focus {
     outline: 0;
-    box-shadow: 0 0 0 2px ${(props) => props.theme['purple-dark']};
+    box-shadow: 0 0 0 1px ${(props) => props.theme['purple-dark']};
   }
 
   body {
@@ -26,5 +26,9 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1rem;
+  }
+
+  input:invalid {
+    box-shadow: 0 0 0 1px red;
   }
 `
