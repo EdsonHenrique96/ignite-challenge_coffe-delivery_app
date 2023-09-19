@@ -6,6 +6,7 @@ import { CheckoutSummary } from './components/CheckoutSummary'
 import { useForm, FormProvider } from 'react-hook-form'
 import { OrderAddressForm } from './components/OrderAddressForm'
 import { PaymentMethodSelector } from './components/PaymentMethodSelector'
+import { useNavigate } from 'react-router-dom'
 
 const addressFormValidationSchema = zod.object({
   cep: zod
@@ -25,27 +26,28 @@ const addressFormValidationSchema = zod.object({
 
 type addressFormData = zod.infer<typeof addressFormValidationSchema>
 
+const defaultValueForm = {
+  cep: '',
+  rua: '',
+  bairro: '',
+  cidade: '',
+  complemento: '',
+  numero: undefined,
+  uf: '',
+  metodoDePagamento: '',
+}
+
 export function Checkout() {
+  const navigate = useNavigate()
+
   const checkoutForm = useForm<addressFormData>({
     resolver: zodResolver(addressFormValidationSchema),
-    defaultValues: {
-      cep: '',
-      rua: '',
-      bairro: '',
-      cidade: '',
-      complemento: '',
-      numero: undefined,
-      uf: '',
-      metodoDePagamento: '',
-    },
+    defaultValues: defaultValueForm,
   })
 
   const comfirmOrder = (data: addressFormData) => {
-    // if (!paymentMethod) return
-
-    // enable submit button
-
     console.log(data)
+    navigate('/success', { state: { ...data } })
   }
 
   return (

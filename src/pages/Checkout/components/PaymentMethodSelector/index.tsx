@@ -10,9 +10,9 @@ import {
 import { useFormContext } from 'react-hook-form'
 
 enum PAYMENT_METHOD {
-  'CREDIT' = 'CREDIT',
-  'DEBIT' = 'DEBIT',
-  'MONEY' = 'MONEY',
+  'CREDIT' = 'Cartão de Crédito',
+  'DEBIT' = 'Cartão de Débito',
+  'MONEY' = 'Dinheiro',
 }
 
 export function PaymentMethodSelector() {
