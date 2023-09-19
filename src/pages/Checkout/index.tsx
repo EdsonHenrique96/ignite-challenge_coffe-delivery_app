@@ -20,6 +20,7 @@ const addressFormValidationSchema = zod.object({
   uf: zod
     .string()
     .length(2, 'Adicione a sigla do seu estado, Ex. São Paulo = SP'),
+  metodoDePagamento: zod.string().nonempty('Selecione a forma de pagamento'),
 })
 
 type addressFormData = zod.infer<typeof addressFormValidationSchema>
@@ -35,6 +36,7 @@ export function Checkout() {
       complemento: '',
       numero: undefined,
       uf: '',
+      metodoDePagamento: '',
     },
   })
 
